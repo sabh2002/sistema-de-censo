@@ -1,0 +1,14 @@
+{% extends 'body.html' %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-body">
+                <h2>{{ titulo }}</h2>
+                <p class="lead">{{ seccion }}</p>
+                {% block contenido %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'confirmar.html' %}
+
+{% block contenido %}
+    <p>¿Estás seguro de que deseas eliminar a la carga familiar"{{ object }} C.I: {{ object.cedula }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Sí, eliminar">
+    </form>
+    <a href="{% url 'carga_familiar'  %}" class="btn btn-secondary">Cancelar</a>
+{% endblock %}

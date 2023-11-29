@@ -1,0 +1,42 @@
+{% extends 'listas.html' %}
+
+{% block columns %}
+    <tr>
+      <!-- <th scope="col"></th> -->
+      <th scope="col">#</th>
+      <th scope="col">Familia</th>
+      <th scope="col">Jefe familiar</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Tipo Vivienda</th>
+      <th scope="col">Nº Calle</th>
+      <th scope="col">Nº Casa</th>
+      <th scope="col">Opciones</th>
+    </tr>
+ {% endblock %}
+
+
+ {% block rows %}
+    {% for i in object_list %}
+    <tr>
+      <!-- <td><i class="bi bi-person-fill"></i></td> -->
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.Habitante.apellido }}</td>
+      <td>{{ i.Habitante.nombre}} {{i.Habitante.segundoNombre}} {{i.Habitante.apellido}} {{i.Habitante.segundoApellido}}</td>
+      <td>{{ i.Habitante.cedula }}</td>
+     <td>{{i.tipo_casa}}</td>
+     <td>{{i.numeroCalle}}</td>
+     <td>{{i.numeroCasa}}</td>
+     
+      <td>
+        <a href="{% url 'editar_jefe' jefe_id=i.id %}" type="button" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
+        <!-- <button type="button" class="btn btn-warning btn-xs"><i class="bi bi-pencil-square"></i></button></a> -->
+        <a href="{% url 'carga_jefe' jefe_id=i.id %}" type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-person-vcard"></i></a>
+        <a href="{% url 'eliminar_jefe' i.Habitante.id %}" type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+        <a href="{% url 'jefe_pdf' i.id %}" type="button" class="btn btn-outline-secondary btn-sm">PDF<i class="bi bi-file-pdf bi-10x"></i></a>
+        
+      </td>
+    </tr>
+    {% endfor %}
+
+    {% endblock %}
+

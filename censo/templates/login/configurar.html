@@ -1,0 +1,34 @@
+<!-- configurar_usuario.html -->
+{% extends 'body.html' %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-danger text-white">Configuración de Usuario</div>
+              <br>
+              <span class="alert alert-info" style="width: 100%;" >Deje el campo de usuario en blanco si quiere mantener el actual</span>
+
+              <div class="card-body">
+
+                <form method="post">
+
+                  {% csrf_token %}
+                  <div class="mb-3">
+                    <label for="nuevo_nombre_usuario" class="form-label">Nuevo Nombre de Usuario:</label>
+                    <input type="text" class="form-control" id="nuevo_nombre_usuario" name="nuevo_nombre_usuario" default="{{user}}">
+                  </div>
+                  <div class="mb-3">
+                    <label for="id_new_password1" class="form-label">Nueva Contraseña:</label>
+                    <input type="password" class="form-control" id="id_new_password1" name="new_password1" minlength="8" pattern="\d+" title="La contraseña debe ser numérica y tener al menos 8 caracteres" required>
+                  </div>
+                  <button type="submit" class="btn btn-info">Guardar Cambios</button>
+                  <a class="btn btn-danger" href="{% url 'inicio' %}">Cancelar</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+{% endblock %}

@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Listado de Viviendas</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    </head>
+        <style>
+        table, th, td {
+            border: 0.1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+
+
+        }
+        th,td{
+            padding-right:5px;
+            padding-left:5px;
+        }
+        img {
+            width: 30%; /* Puedes ajustar el porcentaje según tus necesidades */
+            display: block; /* Esto ayuda a centrar la imagen */
+            margin: auto;   /* Esto también ayuda a centrar la imagen */
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;;
+            font-size:13pt;
+
+        }
+
+        @page {
+            size:letter;
+            margin:0.5cm;
+            @bottom-center {
+                content: 'Sistema de Censo Poblacional "El Cambio I" - Página ' counter(page);
+                font-size: 10pt;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+    </style>
+    <body>
+        <img src="https://i.ibb.co/f8p4vzN/logo-el-cambio.jpg" alt="">
+        <hr>
+        <h3 style="text-align:center;">Listado por Vivienda</h3>
+        <hr>
+        <h4><i>Cantidad familias con Vivienda: {{total_jefes}}</i></h4>
+         <table border="1">
+                    <thead>
+                        <tr>
+                            <!-- <th scope="col"></th> -->
+                           
+                            <th scope="col">Familia</th>
+                            <th scope="col">Jefe familiar</th>
+                            <th scope="col">Cedula</th>
+                            <th scope="col">Tipo Vivienda</th>
+                            <th scope="col">Direccion</th>
+                            <th scope="col">Nº Calle</th>
+                            <th scope="col">Nº Casa</th>
+                          </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in jefes %}
+                        <tr>
+                            <!-- <td><i class="bi bi-person-fill"></i></td> -->
+                            
+                            <td>{{ h.Habitante.apellido }}</td>
+                            <td>{{ h.Habitante.nombre}} {{h.Habitante.segundoNombre}} {{h.Habitante.apellido}} {{h.Habitante.segundoApellido}}</td>
+                            <td>{{ h.Habitante.cedula }}</td>
+                           <td>{{h.tipo_casa}}</td>
+                           <td>{{h.direccion}}</td>
+                           <td>{{h.numeroCalle}}</td>
+                           <td>{{h.numeroCasa}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </body>
+</html>

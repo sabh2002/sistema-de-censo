@@ -1,0 +1,78 @@
+{% extends 'home.html' %}
+<!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+{% block body %}
+{% load static %}
+
+
+<body class="sidebar-mini layout-fixed bg-light">
+    <div class="wrapper">
+
+        <!-- <a href="#" data-toggle="push-menu" role="button" id="toggle">
+            <i class="fas fa-bars"></i>
+        </a> -->
+        {% include 'header.html' %}
+
+        <div class="content-wrapper">
+            <div class="content-header bg-danger">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-sm-6" style="display: flex;">
+                            <div class=""><button class="btn btn-outline-danger" style="position:relative; border: none;" data-widget="pushmenu"><i class="bi bi-list nav-icon"></i></button></div>
+                            <div><img src="{% static 'img/images.png' %}" alt="AdminLTE Logo"
+                                class="brand-image img-circle elevation-6" style="width: 30px; display: flex;"></div>
+                            <h1 class="m-0 text-light" style="display: flex; padding-left: 10px;">Sitema de Censo El Cambio 1</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="{% url 'inicio' %}">Inicio</a></li>
+                                <li class="breadcrumb-item">{{seccion}}</li>
+                            </ol> -->
+                            <!-- Dropdown de Usuario -->
+                            <div class="btn-group breadcrumb float-sm-right" style="margin-right: 50px;">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-person-fill-gear"></i> {{ user }}
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{% url 'configurar' %}"><i class="bi bi-gear-fill"></i>Configurar Usuario</a>  
+
+                                    <a class="dropdown-item" href="{% url 'registrar' %}"><i class="bi bi-person-fill-add"></i>Crear Usuario</a>
+
+                                    <a class="dropdown-item" href="{% url 'cerrar_sesion' %}"><i class="bi bi-door-open-fill"></i>Cerrar Sesión</a>
+                                </div>
+                            </div>
+                            <!-- Fin Dropdown de Usuario -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <br>
+            <div class="content" >
+                <div class="container">
+
+                    {% block content %}
+
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+
+        {% include 'footer.html' %}
+    </div>
+
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var toggleButton = document.querySelector('[data-widget="pushmenu"]');
+      var arrows = document.querySelectorAll('.fa-angle-left');
+
+      toggleButton.addEventListener('click', function () {
+        // Al hacer clic en el botón, iteramos sobre las flechas y cambiamos su estilo de visibilidad
+        arrows.forEach(function (arrow) {
+          arrow.style.display = arrow.style.display === 'none' ? '' : 'none';
+        });
+      });
+    });
+  </script>
+{% endblock %}

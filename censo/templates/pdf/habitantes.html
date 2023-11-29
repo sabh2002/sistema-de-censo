@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+    <body>
+        
+        <h3>Listado de habitantes</h3>
+        <h4>Cantidad de Habitantes: {{total_habitantes}}</h2>
+        <table border="1">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Edad</th>
+                <th>Genero</th>
+                <th>Estado Civil</th>
+                <th>Discapacidad</th>
+                <th>Carnet de la patria</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for h in habitantes %}
+                <tr>
+                    
+                    <td>{{h.nombre}}</td>
+                    <td>{{h.apellido}}</td>
+                    <td>{{h.cedula}}</td>
+                    <td>{{h.fecha_nacimiento}}</td>
+                    <td>{{h.genero}}</td>
+                    <td>{{h.estado_civil}}</td>
+                    <td>{{h.discapacidad}}</td>
+                    <td>{{h.carnet_patria}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

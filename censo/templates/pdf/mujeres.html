@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Listado de Habitantes</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    </head>
+        <style>
+        table, th, td {
+            border: 0.1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+
+
+        }
+        th,td{
+            padding-right:5px;
+            padding-left:5px;
+        }
+        img {
+            width: 30%; /* Puedes ajustar el porcentaje según tus necesidades */
+            display: block; /* Esto ayuda a centrar la imagen */
+            margin: auto;   /* Esto también ayuda a centrar la imagen */
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;;
+            font-size:13pt;
+
+        }
+
+        @page {
+            size:letter;
+            margin:0.5cm;
+            @bottom-center {
+                content: 'Sistema de Censo Poblacional "El Cambio I" - Página ' counter(page);
+                font-size: 10pt;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+    </style>
+    <body>
+        <img src="https://i.ibb.co/f8p4vzN/logo-el-cambio.jpg" alt="">
+        <hr>
+        <h3 style="text-align:center;">Listado de Mujeres</h3>
+        <hr>
+        <h4><i>Cantidad de Mujeres: {{total_mujeres}}</i></h4>
+         <table border="1">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cedula</th>
+                        <th>Edad</th>
+                        <th>Estado Civil</th>
+                        <th>Discapacidad</th>
+                        <th>Lactancia</th>
+                        <th>Embarazo</th>
+                        <th>Vota</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in mujeres %}
+                        <tr>
+
+                            <td>{{h.nombre}}</td>
+                            <td>{{h.apellido}}</td>
+                            {% if h.cedula == None %}
+                            <td>No tiene</td>
+                            {% else %}
+                            <td>{{ h.cedula }}</td>
+                            {% endif %}
+                            <td>{{h.edad}}</td>
+                            <td>{{h.estado_civil}}</td>
+                            <td>{{h.discapacidad}}</td>
+                            <td>{{h.mujer_lactancia}}</td>
+                            <td>{{h.mujer_embarazada}}</td>
+                            <td>{{h.vota}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </body>
+</html>

@@ -1,0 +1,80 @@
+{% extends 'formulario_registro.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block titulo %}
+<div class="card-header bg-info">
+    <h3 class="card-title">
+        <i class="bi bi-person-plus-fill"></i>
+        {{ titulo }}
+    </h3>
+</div>
+{% endblock %}
+{% block head %}
+<link rel="stylesheet"
+    href="{% static 'lib/datatables/dataTables.bootsthap4.min.css' %}">
+<link rel="stylesheet"
+    href="{% static 'lib/datatables/responsive.bootsthap4.min.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'lib/datatables/responsive.dataTables.css' %}"> -->
+<script src="{% static 'lib/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'lib/datatables/dataTables.bootsthap4.min.js' %}"></script>
+<script src="{% static 'lib/datatables/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'lib/datatables/responsive.bootsthap4.min.js' %}"></script>
+
+<!-- <script src="{% static 'lib/datatables/dataTables.responsive.js' %}"></script> -->
+
+{% endblock %}
+{% block campos %}
+
+{% for field in form2.visible_fields %}
+
+<label for="{{field.label}}"> {{field.label}} </label>
+
+{{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+
+{% endfor %}
+<br>
+<h4 style="text-align: center; text-decoration: underline;">Carga Familiar:</h4>
+<table class="table" id="tablita">
+    {% for carga in cargas %}
+    <tr>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>cedula</th>
+        <th>Edad</th>
+        <th>Parentesco</th>
+    </tr>
+    <tr>
+        <td>{{carga.Habitante.nombre}}</td>
+        <td>{{carga.Habitante.apellido }}</td>
+        {%if carga.Habitante.cedula != None%}
+        <td>{{carga.Habitante.cedula}}</td>
+        {%else%}
+        <td>No tiene</td>
+        <td>{{carga.Habitante.edad}}</td>
+        {%endif%}
+        <td>{{carga.parentesco}}</td>
+        <td>
+            <a href="{% url 'editar_carga' carga_id=carga.id %}" type="button"
+                class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
+            <!-- <button type="button" class="btn btn-warning btn-xs"><i class="bi bi-pencil-square"></i></button></a> -->
+            <a href="{% url 'eliminar_carga' carga.Habitante.id %}" type="button"
+                class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+<script>
+    $(document).ready( function () {
+        $('#tablita').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
+            },
+            responsive: thue,
+            autoWidth: false,
+
+        });
+    } );
+</script>

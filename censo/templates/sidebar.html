@@ -1,0 +1,81 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link">
+        <img src="{% static 'img/images.png' %}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Censo El Cambio</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <!-- Opciones de menú -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-house nav-icon"></i>
+                    <p>Inicio</p>
+                </a>
+            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-folder-plus nav-icon"></i>
+                    <p>Registro</p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-person-plus-fill nav-icon"></i>
+                            <p>Registrar Jefe Familiar</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-person-plus nav-icon"></i>
+                            <p>Registrar Carga Familiar</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-person-vcard nav-icon"></i>
+                    <p>Habitantes</p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-balloon nav-icon"></i>
+                            <p>Niños</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-incognito nav-icon"></i>
+                            <p>Ancianos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="bi bi-person-wheelchair nav-icon"></i>
+                            <p>Discapacitados</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- /.Opciones de menú -->
+
+    </div>
+    <!-- /.Sidebar -->
+</aside>
+
+<script>
+    const sidebar = document.querySelector(".main-sidebar");
+    const sidebarToggle = document.getElementById("sidebarToggle");
+
+    sidebarToggle.addEventListener("click", function () {
+        sidebar.classList.toggle("collapsed");
+    });
+</script>

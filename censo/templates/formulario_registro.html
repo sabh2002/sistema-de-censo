@@ -1,0 +1,235 @@
+{% extends 'body.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container" style="width: 35em;">
+<form method="post">
+    <div class="card card-default">
+        {% block titulo %}
+        {% endblock %}
+        <div class="card-body" style="width: 30em;">
+            {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert {{ message.tags }} alert-dismissible fade show"
+                role="alert">
+                {{ message }}
+                <button type="button" class="btn" data-bs-dismiss="alert"
+                    aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% if form.errors %}
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-ban"></i>Ha ocurrido un error al
+                    guardar el habitante</h5>
+                <ul>
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                    <li>
+                        {{error}}
+                    </li>
+                    {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <span class="alert alert-warning" id="mensajeError" style="display: none;"></span>
+            {% for field in form.visible_fields %}
+
+            <div class="form-group">
+                
+                <label for="{{field.label}}"> {{field.label}} </label>
+
+                {{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+
+            </div>
+
+            {% endfor %}
+            {% block campos %}
+
+            {% endblock %}
+        </div>
+
+        <button type="submit" class="btn btn-info" style="margin:20px;"><i class="bi bi-floppy btn-sx"></i>
+            {{boton}}</button>
+        </div>
+    </div>
+
+</form>
+
+<script>
+    "{% if form.errors %}"
+        var errors = '';
+       "{% for field in form %}"
+            "{% for error in field.errors %}"
+                errors += '{{ error.lower }}\n';
+            "{% endfor %}"
+        "{% endfor %}"
+        Swal.fire({
+            title: 'Error!',
+            text: errors,
+            icon: 'error'
+        });
+   "{% endif %}"
+</script>
+
+<script>
+    // Oculta los campos por defecto
+    var fieldMujerEmbarazada = 'Mujer embarazada';  // Reemplaza con el ID del campo
+    var labelMujerEmbarazada = document.querySelector('label[for="' + fieldMujerEmbarazada + '"]');
+    var mujerLactancia = 'Mujer lactancia';
+    var labelMujerLactancia = document.querySelector('label[for="' + mujerLactancia + '"]');
+    var fieldTipoDiscacidad = 'Tipo discapacidad';
+    var labelTipoDiscapacidad = document.querySelector('label[for="' + fieldTipoDiscacidad + '"]');
+    var fieldTipoMedicamentos = 'Tipo medicamentos';
+    var labelTipoMedicamentos = document.querySelector('label[for="' + fieldTipoMedicamentos + '"]');
+    var fieldhabitanteEncamada = 'Habitante encamada';
+    var labelhabitanteEncamada = document.querySelector('label[for="'+ fieldhabitanteEncamada +'"]');
+    var fieldCentroVotacion = 'Centro votacion';
+    var labelCentroVotacion = document.querySelector('label[for="' + fieldCentroVotacion + '"]');
+    
+    var mujerEmbarazada = document.getElementById('id_mujer_embarazada');
+    var mujerLactancia = document.getElementById('id_mujer_lactancia');
+    var tipoDiscapacidad = document.getElementById('id_tipoDiscapacidad');
+    var tipoMedicamentos = document.getElementById('id_medicamentos');
+    var encamada = document.getElementById('id_encamada');
+    var centroVotacion = document.getElementById('id_centro');
+
+    labelMujerEmbarazada.style.display = 'none';
+    labelMujerLactancia.style.display = 'none';
+    tipoDiscapacidad.style.display = 'none';
+    tipoMedicamentos.style.display = 'none';
+    encamada.style.display = 'none';
+    mujerEmbarazada.style.display = 'none';
+    mujerLactancia.style.display = 'none';
+    centroVotacion.style.display = 'none';
+    
+    // Función para mostrar u ocultar campos según el género seleccionado
+    function mostrarCampos() {
+        var genero = document.getElementById('id_genero').value;
+        var discapacidad = document.getElementById('id_discapacidad').value;
+        var vota = document.getElementById('id_vota').value;
+        
+        if (genero === 'Femenino') {
+            labelMujerEmbarazada.style.display = 'block';
+            labelMujerLactancia.style.display = 'block';
+            mujerLactancia.style.display = 'block';
+            mujerEmbarazada.style.display = 'block';
+        } else {
+            labelMujerEmbarazada.style.display = 'none';
+            labelMujerLactancia.style.display = 'none';
+            mujerEmbarazada.style.display = 'none';
+            mujerLactancia.style.display = 'none';
+        }
+
+        if (discapacidad === 'Sí'){
+            labelTipoDiscapacidad.style.display = 'block';
+            labelTipoMedicamentos.style.display = 'block';
+            labelhabitanteEncamada.style.display = 'block';
+            tipoDiscapacidad.style.display = 'block';
+            tipoMedicamentos.style.display = 'block';
+            encamada.style.display = 'block';
+        }
+        else{
+            labelTipoDiscapacidad.style.display = 'none';
+            labelTipoMedicamentos.style.display = 'none';
+            labelhabitanteEncamada.style.display = 'none';
+            tipoDiscapacidad.style.display = 'none';
+            tipoMedicamentos.style.display = 'none';
+            encamada.style.display = 'none';
+        }
+
+        if (vota === 'Sí'){
+            labelCentroVotacion.style.display = 'block';
+            centroVotacion.style.display = 'block';
+        }
+        else{
+            labelCentroVotacion.style.display = 'none';
+            centroVotacion.style.display = 'none';
+        }
+            }
+
+    // Agrega un evento onchange al campo de género
+    document.getElementById('id_genero').addEventListener('change', mostrarCampos);
+    document.getElementById('id_discapacidad').addEventListener('change', mostrarCampos);
+    document.getElementById('id_vota').addEventListener('change', mostrarCampos);
+
+    // Llama a la función inicialmente para establecer la visibilidad correcta
+    mostrarCampos();
+</script>
+
+<script>
+    document.getElementById('id_nombre').addEventListener('input', function () {
+        var nombre = this.value;
+        var mensajeError = document.getElementById('mensajeError');
+        if (/\d/.test(nombre)) {
+            mensajeError.textContent = 'El nombre no debe contener números.';
+            mensajeError.style.display = 'block';
+            this.value = ''; // Limpia el campo
+        } else {
+            mensajeError.textContent = ''; // Limpia el mensaje de error si es válido
+            mensajeError.style.display = 'none';
+        }
+    });
+
+    document.getElementById('id_segundoNombre').addEventListener('input', function () {
+        var nombre = this.value;
+        var mensajeError = document.getElementById('mensajeError');
+        mensajeError.style.display = 'block';
+        if (/\d/.test(nombre)) {
+            mensajeError.textContent = 'El nombre no debe contener números.';
+            this.value = ''; // Limpia el campo
+        } else {
+            mensajeError.textContent = ''; // Limpia el mensaje de error si es válido
+            mensajeError.style.display = 'none';
+        }
+    });
+
+
+    document.getElementById('id_apellido').addEventListener('input', function () {
+        var nombre = this.value;
+        var mensajeError = document.getElementById('mensajeError');
+        mensajeError.style.display = 'block';
+        if (/\d/.test(nombre)) {
+            mensajeError.textContent = 'El apellido no debe contener números.';
+            this.value = ''; // Limpia el campo
+        } else {
+            mensajeError.textContent = ''; // Limpia el mensaje de error si es válido
+            mensajeError.style.display = 'none';
+        }
+    });
+
+
+    document.getElementById('id_segundoApellido').addEventListener('input', function () {
+        var nombre = this.value;
+        var mensajeError = document.getElementById('mensajeError');
+        if (/\d/.test(nombre)) {
+            mensajeError.textContent = 'El apellido no debe contener números.';
+            mensajeError.style.display = 'block';
+            this.value = ''; // Limpia el campo
+        } else {
+            mensajeError.textContent = ''; // Limpia el mensaje de error si es válido
+            mensajeError.style.display = 'none';
+        }
+    });
+
+    var cedulaInput = document.getElementById('id_cedula');
+        var mensajeError = document.getElementById('mensajeError');
+        var regex = /^[0-9]+$/; // Expresión regular para números
+
+cedulaInput.addEventListener('input', function () {
+  var cedula = this.value;
+        if (regex.test(cedula)) {
+            mensajeError.textContent = ''; // Limpia el mensaje de error si es válido
+            mensajeError.style.display = 'none';
+        } else {
+            mensajeError.textContent = 'La cédula debe contener solo números.';
+            mensajeError.style.display = 'block';
+            this.value = ''; // Limpia el campo
+        }
+    });
+</script>
+{% endblock %}

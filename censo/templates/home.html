@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> {{titulo}} </title>
+
+  <link rel="shortcut icon" type="image/png" href="{% static 'img/images.png' %}" >
+
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+  <link rel="stylesheet" href="{% static 'lib/adminlte/plugins/fontawesome-free/css/all.min.css' %}">
+
+  <link rel="stylesheet" href="{% static 'lib/adminlte/css/adminlte.min.css' %}">
+<!-- 
+  <link rel="stylesheet" href="{% static 'lib/adminlte/plugins/select2/css/select2.min.css' %}">
+  
+  <script src="{% static 'lib/adminlte/plugins/select2/js/select2.full.min.js' %}"></script> -->
+
+  <script src="{% static 'lib/adminlte/plugins/jquery/jquery.min.js' %}"></script>
+
+  <script src="{% static 'lib/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script src=" {% static 'lib/adminlte/js/adminlte.min.js' %}"></script>
+
+  <script src=" {% static 'lib/sweetalert2/sweetalert2.all.min.js' %}"></script>
+
+
+  {% block head %}
+
+  {% endblock %}
+</head>
+
+{% block body %}
+
+{% endblock %}
+</html>

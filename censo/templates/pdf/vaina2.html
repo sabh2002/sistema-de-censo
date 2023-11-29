@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Listado de Habitantes</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+        <link rel="shortcut icon" type="image/png" href="{% static 'img/images.png' %}" >
+    </head>
+        <style>
+         img {
+            width: 30%; /* Puedes ajustar el porcentaje según tus necesidades */
+            display: block; /* Esto ayuda a centrar la imagen */
+            margin: auto;   /* Esto también ayuda a centrar la imagen */
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        @page {
+            @bottom-center {
+                content: 'Sistema de Censo Poblacional "El Cambio I" - Página ' counter(page);
+                font-size: 10pt;
+                font-family: 'Times New Roman', Times, serif;
+
+            }
+        }
+    </style>
+    <body>
+        <img src="{% static 'img/logo-el-cambio.jpeg' %}" alt>
+        <br>
+        <h6 style="text-align:right;">Fecha: {{fecha}}</h6>
+        <hr>
+        <h5 style="text-align: center;">LISTADO TOTAL DE HABITANTES:</h5>
+        <hr>
+        <h6>Cantidad de Habitantes: {{total_habitantes}}</h6>
+
+
+        <table class="table table-bordered">
+            <thead>
+            <tr class="table-primary">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Edad</th>
+                <th>Genero</th>
+                <th>Estado Civil</th>
+                <th>Discapacidad</th>
+                <th>Carnet de la patria</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for h in habitantes %}
+                <tr>
+
+                    <td>{{h.nombre}}</td>
+                    <td>{{h.apellido}}</td>
+                    {% if h.cedula == None %}
+                    <td>No tiene</td>
+                    {% else %}
+                    <td>{{ h.cedula }}</td>
+                    {% endif %}
+                    <td>{{h.edad}}</td>
+                    <td>{{h.genero}}</td>
+                    <td>{{h.estado_civil}}</td>
+                    <td>{{h.discapacidad}}</td>
+                    {% if h.carnet_patria == None %}
+                    <td>No tiene</td>
+                    {% else %}
+                    <td>{{ h.carnet_patria }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>

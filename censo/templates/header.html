@@ -1,0 +1,263 @@
+{% load static %}
+<link rel="stylesheet"
+    href="{% static 'icons/icons-bs/font/bootstrap-icons.css' %}">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+
+<style>
+    aside {
+    position: relative;
+   
+}
+
+.salir {
+    position: absolute;
+    bottom: 10px; /* Ajusta esto según tu preferencia */
+    list-style: none;
+
+
+}
+.nav-treeview {
+    max-height: 200px; /* Altura máxima de la lista antes de que aparezca la barra de desplazamiento */
+    overflow-y: auto; /* Agrega la barra de desplazamiento vertical solo cuando sea necesario */
+}
+
+.nav-treeview::-webkit-scrollbar {
+    width: 6px; /* Ancho de la barra de desplazamiento específica para la lista */
+}
+
+/* Estilos para la barra de desplazamiento */
+.nav-treeview::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color de fondo de la barra de desplazamiento */
+}
+
+.nav-treeview::-webkit-scrollbar-thumb {
+    background-color: #ed4242; /* Color del "pulgón" de la barra de desplazamiento */
+}
+
+.nav-treeview::-webkit-scrollbar-thumb:hover {
+    background: #e32222; /* Color del "pulgón" al pasar el mouse sobre la barra de desplazamiento */
+}
+</style>
+
+<aside class="main-sidebar sidebar-dark-primary  text-light elevation-4"
+    style="height: 100vh; overflow-y: auto;">
+
+    <!-- Brand Logo -->
+    <div href="#" class="brand-link bg-dark">
+        <img src="{% static 'img/images.png' %}" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Censo El Cambio</span>
+        
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <!-- Opciones de menú -->
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview"
+            role="menu">
+            <li class="nav-item">
+                <a href="{% url 'inicio' %}" class="nav-link">
+                    <i class="bi bi-house nav-icon"></i>
+                    <p>Inicio</p>
+                </a>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-folder-plus nav-icon"></i>
+                    <p>Registro</p><i class="right fas fa-angle-left"></i>
+
+                </a>
+                <ul class="nav nav-treeview">
+
+                    <!--                 <li class="nav-item">
+                    <a href="{% url 'crear_habitantes' %}" class="nav-link">
+                        <i class="bi bi-person-add"></i> 
+                        <p>Registrar Habitante</p>
+                    </a>
+                </li> -->
+
+                    <li class="nav-item">
+                        <a href="{% url 'crear_jefe' %}" class="nav-link">
+                            <i class="bi bi-person-plus-fill nav-icon"></i>
+                            <p>Registrar Jefe Familiar</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'crear_carga' %}" class="nav-link">
+                            <i class="bi bi-person-plus nav-icon"></i>
+                            <p>Registrar Carga Familiar</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-person-vcard nav-icon"></i>
+                    <p>Listado</p><i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview"
+                    style="max-height: 200px; overflow-y: auto;">
+                    <li class="nav-item">
+                        <a href="{% url 'habitantes' %}" class="nav-link">
+                            <i class="bi bi-list nav-icon"></i>
+                            <p>Todos los habitantes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'jefes_familia' %}" class="nav-link">
+                            <i class="bi bi-person-fill nav-icon"></i>
+                            <p>Jefes de Familia</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'carga_familiar' %}" class="nav-link">
+                            <i class="bi bi-person nav-icon"></i>
+                            <p>Cargas de Familia</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{% url 'mostrar_niños' %}" class="nav-link">
+                            <i class="bi bi-balloon nav-icon"></i>
+                            <p>Niños</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'mostrar_ancianos' %}" class="nav-link">
+                            <i class="bi bi-incognito nav-icon"></i>
+                            <p>Ancianos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'mostrar_discapacitados' %}"
+                            class="nav-link">
+                            <i class="bi bi-person-wheelchair nav-icon"></i>
+                            <p>Discapacitados</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'mostrar_hombres' %}" class="nav-link">
+                            <i class="bi bi-gender-male"></i>
+                            <p>Hombres</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'mostrar_mujeres' %}" class="nav-link">
+                            <i class="bi bi-gender-female"></i>
+                            <p>Mujeres</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'mujeres_embarazadas' %}" class="nav-link">
+                            <i class="fi fi-ts-person-pregnant"></i>
+                            <p>Mujeres Embarazadas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'votantes' %}" class="nav-link">
+                            <i class="fi fi-ss-box-ballot"></i>
+                            <p>Votantes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'vivientes' %}" class="nav-link">
+                            <i class="bi bi-houses-fill"></i>
+                            <p>Lista por Casa</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="bi bi-clipboard-data"></i>
+                    <p>Reportes</p><i class="right fas fa-angle-left"></i>
+                </a>
+                <ul class="nav nav-treeview"
+                    style="max-height: 200px; overflow-y: auto;">
+                    <li class="nav-item">
+                        <a href="{% url 'habitantes_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Habitanes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'jefes_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Jefes Familiares</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'cargas_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Cargas Familiares</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'niños_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Niños</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'ancianos_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Ancianos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{%url 'discapacitados_pdf'%}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Discapacitados </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'hombres_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Hombres </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'mujeres_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Mujeres </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'embarazadas_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Embarazadas</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'votantes_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado de Votantes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'viviendas_pdf' %}" class="nav-link">
+                            <i class="bi bi-filetype-pdf"></i>
+                            <p>Listado por Casas</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- /.Opciones de menú -->
+        <style>
+            .user-menu-toggle.menu-open > ul {
+                display: block;
+            }
+        </style>
+        
+
+    </div>
+        
+        
+    </div>
+
+    <!-- /.Sidebar -->
+</aside>

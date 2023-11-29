@@ -1,0 +1,23 @@
+{% extends 'formulario_registro.html' %}
+{% load widget_tweaks %}
+{% block titulo %}
+<div class="card-header bg-info">
+    <h3 class="card-title">
+        <i class="bi bi-person-plus-fill"></i>
+        {{ titulo }}
+    </h3>
+</div>
+{% endblock %}
+{% block campos %}
+
+
+{% for field in form2.visible_fields %}
+
+<label for="{{field.label}}"> {{field.label}} </label>
+
+{{ field|add_class:'form-control'|attr:'autocomplete:off' }}
+
+{% endfor %}
+
+
+{% endblock %}

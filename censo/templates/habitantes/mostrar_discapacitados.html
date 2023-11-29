@@ -1,0 +1,45 @@
+{% extends 'listas.html' %}
+{% block columns %}
+    <tr>
+      <!-- <th scope="col"></th> -->
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Discapacidad</th>
+      <th scope="col">Opciones</th>
+    </tr>
+ {% endblock %}
+
+ {% block rows %}
+    {% for i in discapacitados %}
+    <tr>
+      
+      <!-- <td><i class="bi bi-person-fill"></i></td> -->
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.Habitante.nombre }}</td>
+      <td>{{ i.Habitante.apellido }}</td>
+      {% if i.Habitante.cedula == None %}
+      <td>No tiene</td>
+      {% else %}
+      <td>{{ i.Habitante.cedula }}</td>
+      {% endif %}
+      <td>{{ i.Habitante.edad }}</td>
+      {% if  i.Habitante.discapacidad == 'Sí' %}
+      <td>Sí</td>
+      {% else %}
+      <td>No</td>
+      {% endif %}
+      <td>
+        <a href="{% if i.jefe_familiar %}{% url 'editar_jefe' jefe_id=i.Habitante.jefefamiliar.id %}{% else %}{% url 'editar_carga' carga_id=i.Habitante.cargafamiliar.id %}{% endif %}" type="button" class="btn btn-outline-info btn-sm">
+          <i class="bi bi-eye"></i>
+      </a>
+        <!-- <button type="button" class="btn btn-warning btn-xs"><i class="bi bi-pencil-square"></i></button> -->
+        <a href="{% url 'eliminar_habitante' i.Habitante.id %}" type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+        
+      </td>
+    </tr>
+    {% endfor %}
+
+    {% endblock %}

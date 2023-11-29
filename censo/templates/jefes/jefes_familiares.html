@@ -1,0 +1,49 @@
+{% extends 'listas.html' %}
+
+{% block columns %}
+    <tr>
+      <!-- <th scope="col"></th> -->
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Cedula</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Discapacidad</th>
+      <th scope="col">Opciones</th>
+    </tr>
+ {% endblock %}
+
+
+ {% block rows %}
+    {% for i in object_list %}
+    <tr>
+      <!-- <td><i class="bi bi-person-fill"></i></td> -->
+      <td>{{ forloop.counter }}</td>
+      <td>{{ i.Habitante.nombre }}</td>
+      <td>{{ i.Habitante.apellido }}</td>
+      <td>{{ i.Habitante.cedula }}</td>
+      <td>{{ i.Habitante.edad }}</td>
+      {% if  i.Habitante.discapacidad == 'Sí' %}
+      <td>Sí</td>
+      {% else %}
+      <td>No</td>
+      {% endif %}
+      <td>
+        <a href="{% url 'editar_jefe' jefe_id=i.id %}" type="button" class="btn btn-outline-info btn-sm"><i class="bi bi-eye"></i></a>
+        <!-- <button type="button" class="btn btn-warning btn-xs"><i class="bi bi-pencil-square"></i></button></a> -->
+        <a href="{% url 'carga_jefe' jefe_id=i.id %}" type="button" class="btn btn-outline-primary btn-sm"><i class="bi bi-person-vcard"></i></a>
+        <a href="{% url 'eliminar_jefe' i.Habitante.id %}" type="button" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+        <a href="{% url 'jefe_pdf' i.id %}" type="button" class="btn btn-outline-secondary btn-sm">PDF<i class="bi bi-file-pdf bi-10x"></i></a>
+        
+      </td>
+    </tr>
+    {% endfor %}
+
+    {% endblock %}
+    {% block botones %}
+    <div class="card-footer">
+        <a href="{% url 'crear_jefe' %}">
+            <button class="btn btn-outline-danger"><i class="bi bi-person-plus-fill btn-sx"></i> Registrar Nuevo Jefe Familiar</button>
+          </a>
+    </div>
+    {% endblock %}

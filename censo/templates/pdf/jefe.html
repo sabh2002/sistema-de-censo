@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>{{jefe.Habitante.nombre}}{{jefe.Habitante.apellido}}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    </head>
+        <style>
+        table, th, td {
+            border: 0.1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+
+
+        }
+        th,td{
+            padding-right:5px;
+            padding-left:5px;
+        }
+        img {
+            width: 30%; /* Puedes ajustar el porcentaje según tus necesidades */
+            display: block; /* Esto ayuda a centrar la imagen */
+            margin: auto;   /* Esto también ayuda a centrar la imagen */
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;;
+            font-size:13pt;
+
+        }
+
+        @page {
+            size:letter;
+            margin:0.5cm;
+            @bottom-center {
+                content: 'Sistema de Censo Poblacional "El Cambio I" - Página ' counter(page);
+                font-size: 10pt;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+    </style>
+<body>
+    <header>
+        <img src="https://i.ibb.co/f8p4vzN/logo-el-cambio.jpg" alt="Logo El Cambio">
+    </header>
+    <br>
+    <h6 style="text-align:right;">Fecha: {{fecha}}</h6>
+    <hr>
+    <h3 style="text-align: center;">Jefe Familiar: 
+    <h4 style="text-align: center;">{{jefe.Habitante.nombre}} {{jefe.Habitante.segundoNombre}} {{jefe.Habitante.apellido}} {{jefe.Habitante.segundoApellido}} C.I: {{jefe.Habitante.cedula}}</h4></h3>
+    <h5>Cantidad de cargas: {{cantidad}}</h5>
+    <hr>
+
+    <h3 style='text-align:center;'>Cargas Familiares</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="table-primary">
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Cedula</th>
+                <th>Edad</th>
+                <th>Genero</th>
+                <th>Estado Civil</th>
+                <th>Discapacidad</th>
+                <th>Carnet de la patria</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for c in cargas %}
+                <tr>
+
+                    <td>{{c.Habitante.nombre}}</td>
+                    <td>{{c.Habitante.apellido}}</td>
+                    {% if c.Habitante.cedula == None %}
+                    <td>No tiene</td>
+                    {% else %}
+                    <td>{{ c.Habitante.cedula }}</td>
+                    {% endif %}
+                    <td>{{c.Habitante.edad}}</td>
+                    <td>{{c.Habitante.genero}}</td>
+                    <td>{{c.Habitante.estado_civil}}</td>
+                    <td>{{c.Habitante.discapacidad}}</td>
+                    {% if c.Habitante.carnet_patria == None %}
+                    <td>No tiene</td>
+                    {% else %}
+                    <td>{{ c.Habitante.carnet_patria }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+    </table>
+</body>
+</html>

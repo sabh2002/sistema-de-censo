@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Listado de Jefes</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    </head>
+        <style>
+        table, th, td {
+            border: 0.1px solid black;
+            border-collapse: collapse;
+            text-align: center;
+
+
+        }
+        th,td{
+            padding-right:5px;
+            padding-left:5px;
+        }
+        img {
+            width: 30%; /* Puedes ajustar el porcentaje según tus necesidades */
+            display: block; /* Esto ayuda a centrar la imagen */
+            margin: auto;   /* Esto también ayuda a centrar la imagen */
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;;
+            font-size:13pt;
+
+        }
+
+        @page {
+            size:letter;
+            margin:0.5cm;
+            @bottom-center {
+                content: 'Sistema de Censo Poblacional "El Cambio I" - Página ' counter(page);
+                font-size: 10pt;
+                font-family: 'Times New Roman', Times, serif;
+            }
+        }
+    </style>
+    <body>
+        <img src="https://i.ibb.co/f8p4vzN/logo-el-cambio.jpg" alt="">
+        <hr>
+        <h3 style="text-align:center;">Listado de Jefes de Familia</h3>
+        <hr>
+        <h4><i>Cantidad de Jefes: {{total_jefes}}</i></h4>
+         <table border="1">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Cedula</th>
+                        <th>Edad</th>
+                        <th>Genero</th>
+                        <th>Estado Civil</th>
+                        <th>Discapacidad</th>
+                        <th>Carnet de la patria</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for h in jefes %}
+                        <tr>
+
+                            <td>{{h.Habitante.nombre}}</td>
+                            <td>{{h.Habitante.apellido}}</td>
+                            {% if h.Habitante.cedula == None %}
+                            <td>No tiene</td>
+                            {% else %}
+                            <td>{{ h.Habitante.cedula }}</td>
+                            {% endif %}
+                            <td>{{h.Habitante.edad}}</td>
+                            <td>{{h.Habitante.genero}}</td>
+                            <td>{{h.Habitante.estado_civil}}</td>
+                            <td>{{h.Habitante.discapacidad}}</td>
+                            {% if h.Habitante.carnet_patria == None %}
+                            <td>No tiene</td>
+                            {% else %}
+                            <td>{{ h.Habitante.carnet_patria }}</td>
+                            {% endif %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+    </body>
+</html>

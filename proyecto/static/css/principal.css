@@ -1,0 +1,69 @@
+/* Estilos generales */
+body {
+    background-color: #f8f9fa; /* Fondo gris claro */
+    color: #333; /* Texto oscuro */
+}
+
+/* Barra de navegación */
+.barra{
+    background-color: #bb0000; /* Fondo blanco */
+    border-bottom: 1px solid #ccc; /* Borde inferior gris claro */
+}
+
+.navbar-light .navbar-brand {
+    color: #333; /* Texto oscuro para el enlace del logotipo */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #333; /* Texto oscuro para los enlaces de navegación */
+}
+
+/* Encabezado */
+.jumbotron {
+    background-color: #fff; /* Fondo blanco */
+    padding: 2rem;
+}
+
+/* Títulos y encabezados */
+h1, h2, h3 {
+    color: #333; /* Texto oscuro para los títulos */
+}
+
+/* Contenido principal */
+.container {
+    margin-top: 2rem; /* Espacio superior */
+}
+
+/* Botones de acción*/
+.list-group-item a {
+    color: #fff; 
+    background-color: #bb0000;
+    border-color: #bb0000; 
+}
+
+.list-group-item a:hover {
+    background-color: #c82333; /* Cambio de color al pasar el mouse */
+    border-color: #bd2130; /* Cambio de color al pasar el mouse */
+}
+
+/* Tabla de datos */
+.table {
+    background-color: #fff; /* Fondo blanco */
+}
+
+/* Pie de página */
+footer {
+    background-color: #333; /* Fondo negro para el pie de página */
+    color: #fff; /* Texto blanco para el pie de página */
+    padding: 1rem;
+}
+
+/* Enlaces del pie de página */
+footer a {
+    color: #fff; /* Texto blanco para los enlaces del pie de página */
+}
+
+/* Enlace activo en la barra de navegación */
+.navbar-light .navbar-nav .nav-link.active {
+    color: #dc3545; /* Texto rojo para el enlace activo */
+}
